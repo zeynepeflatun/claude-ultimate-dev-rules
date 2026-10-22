@@ -30,6 +30,13 @@ One `CLAUDE.md` that makes an AI coding assistant **plan first, test first, writ
 
 **Enforcement (important)** — copy `.claude/settings.example.json` to `.claude/settings.json`. This blocks reads of secret files at the tool level.
 
+## Skills
+
+Loaded on demand, unlike `CLAUDE.md` which is always on. Copy a folder from `skills/` into `.claude/skills/`.
+
+1. `pentest-check` — attacker-mindset check for endpoints (RBAC, IDOR/BOLA, SQLi, XSS, mass assignment, audit log) plus a 3-step delivery gate.
+2. `skill-vet` — read-only security scan of a third-party skill before you install it. Decision: `INSTALL` / `REVIEW` / `DO NOT INSTALL`.
+
 ## Honest limits
 
 `CLAUDE.md` is guidance the model follows, not a sandbox. It greatly reduces leaks, but cannot guarantee 100%. Real protection = these rules **plus** `permissions.deny`, secret scanning in CI, and least-privilege credentials.
